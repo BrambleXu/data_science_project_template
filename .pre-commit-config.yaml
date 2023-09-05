@@ -1,0 +1,9 @@
+repos:
+-   repo: local
+    hooks:
+    -   id: commit-msg-checker
+        name: check commit messages - see https://www.conventionalcommits.org
+        language: pygrep
+        entry: '^(feat|fix|docs|style|refactor|test|chore|perf|ci|build|temp)(\(.*\))?: .*$'
+        args: [--multiline, --negate]
+        stages: [commit-msg]
