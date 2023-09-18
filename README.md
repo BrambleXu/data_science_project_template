@@ -1,6 +1,6 @@
-# Data Science Project Template (WIP)
+# Data Science Project Template
 
-Write about 1-2 paragraphs describing the purpose of your project.
+This is a template repo for data science project.
 
 ## Project structure
 
@@ -46,9 +46,15 @@ Add packages to the `[tool.poetry.dependencies]` or `[tool.poetry.dev-dependenci
 make init
 ```
 
-## TL;DR
+Install 
 
-A recommended commit workflow:
+```
+pre-commit install --hook-type commit-msg
+```
+
+## Usage
+
+A recommended commit workflow.
 
 ```
 make lint  # check the code quality and fix errors
@@ -100,7 +106,50 @@ make test
 ```
 
 
+### Commit Message Checker
+
+We use `pre-commit` hook to check the commit message. When you commit a message, it will check whether the message follow below format.
+
+```
+<type>(<scope>): <short summary>
+  │       │             │
+  │       │             └─⫸ Summary in present tense. Not capitalized. No period at the end.
+  │       │
+  │       └─⫸ Commit Scope: Optional, can be anything specifying the scope of the commit change.
+  |                          For example $location|$browser|$compile|$rootScope|ngHref|ngClick|ngView, etc.
+  |                          In App Development, scope can be a page, a module or a component.
+  │
+  └─⫸ Commit Type: feat|fix|docs|style|refactor|test|chore|perf|ci|build|temp
+```
+
+
+type meanings: https://github.com/legend80s/commit-msg-linter
+```
+  correct format: <type>[scope]: <subject>
+  example: docs: update README to add developer tips
+
+  type:
+    feat     A new feature.
+    fix      A bug fix.
+    docs     Documentation only changes.
+    style    Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc).
+    refactor A code change that neither fixes a bug nor adds a feature.
+    test     Adding missing tests or correcting existing ones.
+    chore    Changes to the build process or auxiliary tools and libraries such as documentation generation.
+    perf     A code change that improves performance.
+    ci       Changes to your CI configuration files and scripts.
+    build    Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm).
+    temp     Temporary commit that won't be included in your CHANGELOG.
+```
+
+You can specify the commit message format by change the regex enty in `.pre-commit-config.yaml`. 
+
+
+
+
 ### TODO
 
+- settings.json
+    - replace flake8 with ruff and other setup for vscode
 - CI workflow ruff
-- 
+- pyproject.toml add some usefule package
