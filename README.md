@@ -41,7 +41,13 @@ Add packages to the `dependencies` or `[tool.pdm.dev-dependencies]` in `pyprojec
 make init
 ```
 
-Install 
+This will download libraries in `.venv` in the project directory.
+
+Change to the virtual environment.
+```
+eval $(pdm venv activate)
+```
+
 
 ```
 pre-commit install --hook-type commit-msg
