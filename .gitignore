@@ -12,6 +12,10 @@ playground/
 # VSCode settings files
 # .vscode/
 
+
+# pdm
+.pdm-python
+
 # Commitlint related
 .husky
 node_modules

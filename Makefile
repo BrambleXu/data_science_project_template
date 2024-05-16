@@ -1,22 +1,21 @@
 init:
-	poetry install
+	pdm install
 
 lint:
-	poetry run black src	
-	poetry run black examples
-	poetry run black tests
+	pdm run ruff check src	
+	pdm run ruff check tests
+	pdm run codespell src	
+	pdm run codespell tests
 
-	poetry run isort src
-	poetry run isort examples
-	poetry run isort tests
+format:
+	pdm run ruff format src
+	pdm run ruff format tests
 
-	poetry run ruff src
-	poetry run ruff examples
-	poetry run ruff tests
+	pdm run ruff check src	
+	pdm run ruff check tests
 
-	poetry run codespell src
-	poetry run codespell examples
-	poetry run codespell tests
+type:
+	pdm run mypy src
 
 test:
-	poetry run pytest tests
+	pdm run pytest tests

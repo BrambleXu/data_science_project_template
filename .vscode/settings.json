@@ -1,38 +1,15 @@
 {
-    "python.defaultInterpreterPath": "/Users/xu/opt/miniconda3/envs/my_project/bin/python",
-    // Linter
-    "python.linting.enabled": true,
-    "python.linting.pylintEnabled": true,
-    // "python.linting.pylintArgs": ["--rcfile=setup.cfg"],
-    "python.linting.lintOnSave": true,
-    "python.linting.pycodestyleEnabled": false,
-    "editor.formatOnSave": false,
-    // Flake8
-    "python.linting.flake8Enabled": true,
-    "python.linting.flake8Args": [
-        "--ignore=E203,W503,W504",
-        "--max-line-length=120",
-        "--max-complexity=12",
-        "--exclude=playground/"
-    ],  
-    // // Black
-    "python.formatting.provider": "black",
-    "python.formatting.blackArgs": ["--line-length=120"],
-    // mypy
-    // "python.linting.mypyEnabled": true,
-    // "python.linting.mypyArgs": [
-    //     "run",
-    //     "--",
-    //     "--ignore-missing-imports",
-    //     "--follow-imports=skip"
-    // ],
-    // isort
-    "python.isort.path": "${workspaceFolder}/bin/isort",
-    "python.testing.pytestArgs": [
-        "tests"
+    /* Ruff for python */
+    "ruff.lint.enable": true,
+    "ruff.lint.args": [
+        "--config=ruff.toml"
     ],
-    "python.testing.unittestEnabled": false,
-    "python.testing.nosetestsEnabled": false,
-    "python.testing.pytestEnabled": true,
-    "git.ignoreLimitWarning": true
+    "ruff.importStrategy": "fromEnvironment",
+    "[python]": {
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.fixAll": "explicit",
+            "source.organizeImports": "explicit"
+        }
+    }
 }

@@ -1,124 +1,30 @@
-[tool.poetry]
-name = "my_project"
-version = "0.0.1"
-description = "Add description here"
-authors = ["first_name last_name <email_address>"]
-license = "MIT"
+[project]
+name = "data_science_project_template"
+version = "0.1.0"
+description = "This is a template repo for data science project."
+authors = [
+    {name = "BrambleXu", email = "liangxu006@gmail.com"},
+]
+dependencies = [
+    "numpy>=1.26.4",
+]
+requires-python = ">=3.10"
 readme = "README.md"
-repository = "xxx"
-classifiers = [
-    "Development Status :: 2 - Pre-Alpha",
-    "Intended Audience :: Developers",
-    "Natural Language :: English",
-    "Operating System :: OS Independent",
-    "Topic :: Software Development :: Libraries",
-]
-packages = [
-    { include = "src" },
-]
-
-
-[tool.poetry.dependencies]
-python = ">=3.10"
-pandas = "^1.4.3"
-scipy = "^1.8.0"
-matplotlib = "^3.6.0"
-
-[tool.poetry.dev-dependencies]
-black = "^22.6.0"
-flake8 = "^5.0.4"
-isort = "^5.10.1"
-pytest = "^7.1.2"
-pytest-cov = "^3.0.0"
-pyupgrade = {version = "^2.37.3", python = "^3.6.1"}
-ipython = "^8.4.0"
-ipykernel = "^6.15.1"
-pre-commit = "^2.20.0"
-pylint = "^2.14.5"
-codespell = "^2.2.2"
-mypy = "^0.991"
-ruff = "^0.0.245"
+license = {text = "MIT"}
 
 [build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
 
-[tool.pytest.ini_options]
-addopts = "-v -Wdefault --cov=src"
-testpaths = [
-    "tests",
+
+[tool.pdm]
+distribution = true
+
+[tool.pdm.dev-dependencies]
+dev = [
+    "ruff>=0.4.4",
+    "pytest>=8.2.0",
+    "mypy>=1.10.0",
+    "pre-commit>=3.7.1",
+    "codespell>=2.2.6",
 ]
-
-[tool.isort]
-profile = "black"
-known_first_party = ["src", "tests"]
-line_length = 120
-
-[tool.black]
-line-length = 120
-exclude = '(_notebooks/.*)'
-
-[tool.ruff]
-line-length = 120
-# Enable Pyflakes `E` and `F` codes by default.
-select = [
-    "E", "W",  # see: https://pypi.org/project/pycodestyle
-    "F",  # see: https://pypi.org/project/pyflakes
-]
-ignore = [
-    "E731",  # Do not assign a lambda expression, use a def
-]
-# Exclude a variety of commonly ignored directories.
-exclude = [
-    ".git",
-    "docs",
-    "notebooks"
-]
-ignore-init-module-imports = true
-
-
-[tool.ruff.mccabe]
-# Unlike Flake8, default to a complexity level of 10.
-max-complexity = 10
-
-[tool.codespell]
-skip = '*.po,*.ts,./.git,./src/3rdParty,./src/Test,./data,./playground'
-count = ''
-quiet-level = 3
-
-
-[tool.mypy]
-files = [
-    "src/module1",
-    "src/module2",
-]
-# This section is for folders with "-" as they are not valid python modules
-exclude = [
-    "src/cli/app-template",
-]
-install_types = "True"
-non_interactive = "True"
-disallow_untyped_defs = "True"
-ignore_missing_imports = "True"
-show_error_codes = "True"
-warn_redundant_casts = "True"
-warn_unused_configs = "True"
-warn_unused_ignores = "False"  # TODO: set to True when all mirror packages will be reversed
-allow_redefinition = "True"
-# disable this rule as the Trainer attributes are defined in the connectors, not in its __init__
-disable_error_code = "attr-defined"
-# style choices
-warn_no_return = "False"
-
-
-# Ignore mypy errors for these files
-# TODO: the goal is for this to be empty
-[[tool.mypy.overrides]]
-# the list can be generated with:
-# mypy --no-error-summary 2>&1 | tr ':' ' ' | awk '{print $1}' | sort | uniq | sed 's/\.py//g; s|src/||g;  s|\/|\.|g' | xargs -I {} echo '"{}",'
-module = [
-    "src.app.components.multi_node.fabric",
-]
-ignore_errors = "True"
-
-
