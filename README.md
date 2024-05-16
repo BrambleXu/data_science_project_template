@@ -28,9 +28,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ## Prerequisites
 
-- `conda`: python environement management tool
-- `poetry`: python packaging and dependency management tool
-
+- `pdm`: python packaging and dependency management tool
 
 ## Create environement
 
