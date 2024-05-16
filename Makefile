@@ -4,6 +4,8 @@ init:
 lint:
 	pdm run ruff check src	
 	pdm run ruff check tests
+	pdm run codespell src	
+	pdm run codespell tests
 
 format:
 	pdm run ruff format src

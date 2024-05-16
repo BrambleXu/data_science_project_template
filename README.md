@@ -19,7 +19,10 @@ Project_folder/
 |- LICENSE           # LICENSE
 |- Makefile          # simplify command
 |- pyproject.toml    # project config file
+|- ruff.toml         # ruff config file
+|- pdm.lock          # pdm lock file
 |- README.md         # readme file
+|- .pre-commit-config.yaml         # pre-commit config file
 ```
 
 ## Getting Started 
@@ -28,17 +31,11 @@ These instructions will get you a copy of the project up and running on your loc
 
 ## Prerequisites
 
-- `pdm`: python packaging and dependency management tool
+- `pdm`: python packaging and dependency management tool, [installation](https://github.com/pdm-project/pdm?tab=readme-ov-file#installation)
 
 ## Create environement
 
-Setup your environement and install project dependencies
-```
-conda create -n my_project python=3.8
-conda activate my_project
-```
-
-Add packages to the `[tool.poetry.dependencies]` or `[tool.poetry.dev-dependencies]` in `pyproject.toml`. Then run bellow command to install all packages.
+Add packages to the `dependencies` or `[tool.pdm.dev-dependencies]` in `pyproject.toml`. Then run bellow command to install all packages.
 
 ```
 make init
@@ -55,7 +52,8 @@ pre-commit install --hook-type commit-msg
 A recommended commit workflow.
 
 ```
-make lint  # check the code quality and fix errors
+make lint  # check the code quality
+make format  # fix errors and check the code quality
 make test  # test code functionality and fix bugs
 git add xxx  # add changes to stage
 git commit -m "feat: "  # commit changes. The commit message should follow bellow convention
@@ -79,8 +77,7 @@ If you need to update your package, simply increment the version in the pyprojec
 
 ```
 # increment the version in the pyproject.toml, here we assume the version is 0.0.1
-poetry build  # build the release files
-poetry publish # publish on the pypi
+pdm publish  # build and publish on the pypi
 git tag v0.0.1  # create tag
 git push origin v0.0.1  # push tag to github
 ```
@@ -92,7 +89,19 @@ git push origin v0.0.1  # push tag to github
 make lint
 ```
 
-This will run black, isort, ruff, mypy, codespell to check the code.
+This will run ruff (replace isort, flake8), codespell to check the code.
+
+```
+make format
+```
+
+This will run ruff (replace black) to format the code.
+
+```
+make mypy
+```
+
+This will run mypy to chekc the type of code.
 
 
 ### Test
@@ -141,13 +150,3 @@ type meanings: https://github.com/legend80s/commit-msg-linter
 ```
 
 You can specify the commit message format by change the regex enty in `.pre-commit-config.yaml`. 
-
-
-
-
-### TODO
-
-- settings.json
-    - replace flake8 with ruff and other setup for vscode
-- CI workflow ruff
-- pyproject.toml add some usefule package

@@ -1,18 +1,7 @@
 repos:
--   repo: local
+  - repo: https://github.com/compilerla/conventional-pre-commit
+    rev: v3.2.0
     hooks:
-    -   id: commit-msg-checker
-        name: check commit messages - see https://www.conventionalcommits.org
-        language: pygrep
-        entry: '^(feat|fix|docs|style|refactor|test|chore|perf|ci|build|temp)(\(.*\))?: .*$'
-        args: [--multiline, --negate]
+      - id: conventional-pre-commit
         stages: [commit-msg]
-
-- repo: https://github.com/astral-sh/ruff-pre-commit
-  # Ruff version.
-  rev: v0.4.4
-  hooks:
-    # Run the linter.
-    - id: ruff
-    # Run the formatter.
-    - id: ruff-format
+        args: []
